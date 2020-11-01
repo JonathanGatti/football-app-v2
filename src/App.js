@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react';
+import {Switch, Route} from 'react-router-dom';
+import CreateTeam from './CreateTeam';
+import HomePage from './HomePage';
+import Navbar from './Navbar';
+import {getTeams} from './utils/requestsLocalApi';
+
+const defaultTeams = [1,2,3,4,5,6]
 
 function App() {
+  const [teams, setTeams] = useState(defaultTeams)
+
+  useEffect(() => {
+    async function getTeamsInEffect(){
+      const res = await getTeams();
+      setTeams(res);
+    }
+    getTeamsInEffect()
+  }, [teams.length])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div>
+      <Navbar/>
+        <div className='root'>
+            <Switch>
+              <Route exact path='/' render={() => <HomePage teams={teams}/>} />
+              <Route exact path='/team/:_id' render={() => <HomePage />} />
+              <Route exact path='/create' render={() => <CreateTeam />} />
+            </Switch>
+        </div>
+   </div>  
   );
 }
 
