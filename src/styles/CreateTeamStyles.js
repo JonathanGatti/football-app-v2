@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { Transform } from '@material-ui/icons';
 import background from '../imgs/3dsection.png'
 
 
@@ -10,6 +11,10 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: 'rgba(19,14,58,1.0)',
+  },
+  title: {
+    color: 'white',
+    textTransform : 'uppercase'
   },
   selectContainer:{
     color: 'white',
@@ -27,6 +32,17 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center'
   },
+  valsContainer: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginBottom: '1rem',
+  },
+  val: {
+    display:'flex',
+    alignItems: 'center',
+    margin: '0.2rem',
+  },
   paper: {
     padding: theme.spacing(2),
     margin: theme.spacing(3),
@@ -35,6 +51,9 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '200px',
     textAlign: 'center',
     color: theme.palette.text.secondary,
+  },
+  submitBtn: {
+    maxHeight:'40px'
   },
 }));
 
