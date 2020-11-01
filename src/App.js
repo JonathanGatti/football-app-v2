@@ -3,6 +3,7 @@ import {Switch, Route} from 'react-router-dom';
 import CreateTeam from './CreateTeam';
 import HomePage from './HomePage';
 import Navbar from './Navbar';
+import Team from './Team';
 import { FormContextProvider } from './contexts/FormContext';
 import { CreateTeamContextProvider } from './contexts/CreateTeamContexts';
 
@@ -22,6 +23,16 @@ function App() {
     getTeamsInEffect()
   }, [teams.length])
 
+  const getTeam = (props) => {
+    let id = props.match.params._id;
+    let currTeam = teams.find(team => (
+      team._id === id
+    ))
+      if(currTeam === undefined){
+        return <Team {...props} teamPlayers={[1,2,3,4,5,6]} teamName={''}/>
+      }
+    return <Team {...props} teamPlayers={currTeam.teamPlayers} teamName={currTeam.teamName}/>
+  }
   return (
       <CreateTeamContextProvider>
         <FormContextProvider>
@@ -30,7 +41,7 @@ function App() {
             <div className='root'>
                 <Switch>
                   <Route exact path='/' render={() => <HomePage teams={teams}/>} />
-                  <Route exact path='/team/:_id' render={() => <HomePage />} />
+                  <Route exact path='/team/:_id' render={getTeam} />
                   <Route exact path='/create' render={() => <CreateTeam />} /> 
                 </Switch>
             </div>
