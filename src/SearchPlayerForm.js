@@ -10,21 +10,20 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import PlayersList from './PlayersList';
 import {getData} from './utils/fetchData';
-import { CreateTeamContext } from './contexts/CreateTeamContexts';
 
 function SearchPlayerForm(props) {
-  const {open} = props
+  const {open, closeForm} = props
   const [val, handleChange, reset] = useSearchPlayerForm('');
-  const {handleClickClose} = useContext(FormContext);
   const [players, setPlayers] = useState()
   
   const handleSubmit = async () =>{
     const team = await getData(val)
     setPlayers(team)
   } 
+
   return (
       <div>
-        <Dialog  open={open} onClose={handleClickClose} aria-labelledby="form-dialog-title">
+        <Dialog  open={open} onClose={closeForm} aria-labelledby="form-dialog-title">
           <DialogTitle id="form-dialog-title">Search for a Player</DialogTitle>
           <DialogContent>
             <form onSubmit={e => {
@@ -42,7 +41,7 @@ function SearchPlayerForm(props) {
             {players && <PlayersList players={players} idx={props.idx}/>}
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClickClose} color="primary">
+            <Button onClick={closeForm} color="primary">
               Cancel
             </Button>
           </DialogActions>

@@ -2,7 +2,6 @@ import React, {useContext, useState} from 'react';
 import Paper from '@material-ui/core/Paper';
 import useSearchPlayerForm from './hooks/useSearchPlayerForm';
 import {postData} from './utils/requestsLocalApi';
-import SearchPlayerForm from './SearchPlayerForm';
 import Player from './Player';
 import { useStyles } from './styles/CreateTeamStyles';
 import Grid from '@material-ui/core/Grid';
@@ -15,42 +14,46 @@ import Snackbar from '@material-ui/core/SnackBar';
 import useSnackBar from './hooks/useSnackBar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { FormContext } from './contexts/FormContext';
-import { CreateTeamContext } from './contexts/CreateTeamContexts';
+import SearchPlayerForm from './SearchPlayerForm';
 
+const classic =  [12,3,3,3,3,3,3,3,3,4,4]
+const defensive =  [12,2,2,2,2,2,4,4,4,4,4]
+const offensive = [12,3,3,3,3,4,4,4,4,4,4]
 
 
 function CreateTeam(){
   const classes = useStyles();
-  const classic =  [12,3,3,3,3,3,3,3,3,4,4]
-  const defensive =  [12,2,2,2,2,2,4,4,4,4,4]
-  const offensive = [12,3,3,3,3,4,4,4,4,4,4]
-
   const [module, setModule] = useState(classic);
   const [isOpen, openSnackBar, closeSnackBar] = useSnackBar(false);
-  const [val, handleChange, reset] = useSearchPlayerForm('');
+  const [players, setPlayers] = useState([]);
+  const [open, setIsOpen] = useState(false);
   const [teamName, setTeamName] = useState('');
-  const {teamPlayers, setTeamPlayers} = useContext(CreateTeamContext)
-  const {isFormShowing, handleClickOpen} = useContext(FormContext);
-  
 
   const handleSelectChange = (e) =>{
     setModule(e.target.value)
   }
 
-  function handleSubmit(){
-    setTeamName(val)
+  const handleNameChange = (e) => {
+    setTeamName(e.target.value)
+  }
+
+  const handleClick = () => {
+    setIsOpen(true);
+  }
+
+  const closeForm = () => {
+    setIsOpen(false)
   }
 
   function submitTeam(){
-    const data = {
-      teamName : teamName,
-      // teamPlayers: teamPlayers
-    }
-    postData(data)
+    console.log(teamName);
+    // const data = {
+    //   teamName : teamName,
+    //   // teamPlayers: teamPlayers
+    // }
+    // postData(data)
   }
 
-  console.log(teamPlayers)
   return (
     <div className={classes.root}>
       <div className={classes.valsContainer}>
@@ -68,15 +71,13 @@ function CreateTeam(){
                   <form className='form' 
                     onSubmit={e => {
                       e.preventDefault()
-                      handleSubmit()
                       openSnackBar()
-                      reset()
                   }}>
                     <TextField 
                         margin='normal'
                         label='Name Your team'
-                        value={val}
-                        onChange={handleChange}
+                        val={teamName}
+                        onChange={handleNameChange}
                         InputProps={{
                           className: classes.input,
                       }}
@@ -95,11 +96,13 @@ function CreateTeam(){
       <Grid container className={classes.container} spacing={3}>
         {module.map((size,i) => (
         <Grid item xs={size}>
-          <Paper className={classes.paper}>
-            <Button onClick={handleClickOpen}>
+          {!open ? <Paper className={classes.paper}>
+            <Button onClick={handleClick}>
               Search for a Player
             </Button>      
-          </Paper>
+          </Paper> : 
+          <SearchPlayerForm open={open} closeForm={closeForm}/>
+          }
         </Grid>
         ))}
       </Grid>
