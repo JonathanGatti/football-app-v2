@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   linkBtn: {
     color: 'white',
     margin: '2rem',
-    padding: '50px 50px',
+    padding: '30px 40px',
     textTransform: 'uppercase',
     backgroundColor:'rgba(45,37,83,1.0)',
     textAlign: 'center',
@@ -37,6 +37,16 @@ const useStyles = makeStyles((theme) => ({
     },
     transition: 'all 0.2s ease-out'
   },
+  deleteBtn: {
+    position: 'relative',
+    borderRadius: '3px',
+    zIndex: 10,
+    transform: 'translate(40px, -30px)',
+    opacity: 0.2,
+    '&:hover':{
+      opacity: 1
+    }
+  }
 }));
 
 export  {useStyles};

@@ -2,15 +2,14 @@ import React from 'react';
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Player from './Player';
+import PlayerCard from './PlayerCard';
 
 import {useStyles} from './styles/TeamStyles';
 import { Typography } from '@material-ui/core';
 
 function Team(props){
   const classes = useStyles();
-  const {team} = props;
-  const {teamPlayers, teamModule,teamName} = team;
+  const {teamPlayers, teamModule,teamName} = props.team;
 
  
   return(
@@ -19,9 +18,7 @@ function Team(props){
         <Grid container className={classes.container} spacing={4}>
         {teamPlayers.map((player,i) => (
           <Grid item xs={teamModule[i]}>
-            <Paper className={classes.playerContainer}>
-              {player.player_name}
-            </Paper>
+            <PlayerCard player={player} /> 
           </Grid>
         ))}
       </Grid>

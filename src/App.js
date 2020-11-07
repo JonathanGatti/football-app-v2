@@ -7,7 +7,6 @@ import Team from './Team';
 import { FormContextProvider } from './contexts/FormContext';
 import { CreateTeamContextProvider } from './contexts/CreateTeamContexts';
 
-
 import {getTeams} from './utils/requestsLocalApi';
 
 const defaultTeams = [1,2,3,4,5,6]

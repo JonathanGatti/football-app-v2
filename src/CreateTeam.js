@@ -46,7 +46,6 @@ function CreateTeam(){
   }
 
   function submitTeam(){
-    console.log(teamName, teamPlayers, module);
     const data = {
       teamName : teamName,
       teamPlayers: teamPlayers,

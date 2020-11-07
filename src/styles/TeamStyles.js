@@ -26,17 +26,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
   },
-  playerContainer : {
-    display : 'flex',
-    justifyContent: 'center',
-    maxHeight: '200px',
-    maxWidth: '200px',
-    marginTop: '1rem',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    color: 'white',
-    backgroundColor: 'transparent',
-  },
+  
 }));
 
 export  {useStyles};

@@ -23,7 +23,10 @@ function HomePage(props){
             <Link className={classes.link} to={`team/${team._id}`}>
               <Button className={classes.linkBtn}>
                 {team.teamName}
-                <DeleteIcon onClick={() => deleteTeam(team)}/>
+                <DeleteIcon 
+                  className={classes.deleteBtn} 
+                  onClick={() => deleteTeam(team)
+                  }/>
               </Button>
             </Link>
           </Grid>
