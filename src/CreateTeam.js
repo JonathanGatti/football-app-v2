@@ -27,6 +27,7 @@ function CreateTeam(){
   const [open, setIsOpen] = useState(false);
   const [teamName, setTeamName] = useState('');
   const [teamPlayers, setTeamPlayers] = useState(classic);
+  const [idx, setIdx] = useState(0);
 
   const handleSelectChange = (e) =>{
     setModule(e.target.value)
@@ -100,7 +101,10 @@ function CreateTeam(){
         <Grid item xs={size}>
           {teamPlayers[i].player_name === undefined ?
           <Paper className={classes.paper}>
-            <Button onClick={handleClick}>
+            <Button onClick={() => {
+              setIdx(i)
+              handleClick()
+              }}>
               Search for a Player
             </Button>      
           </Paper> 
@@ -114,7 +118,7 @@ function CreateTeam(){
             closeForm={closeForm}
             teamPlayers={teamPlayers}
             setTeamPlayers={setTeamPlayers}
-            idx={i}
+            idx={idx}
           />
           }
         </Grid>
