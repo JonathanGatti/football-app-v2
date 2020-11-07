@@ -15,7 +15,6 @@ function PlayersList(props){
       return idx === i ? {...newPlayer} : player
     })
       setTeamPlayers(updatedTeam);
-      console.log(updatedTeam)
   }
 
   function handleClick(player, i){

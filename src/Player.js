@@ -6,7 +6,7 @@ function Player(props) {
   return (
     <div>
       <div>
-        <p style={{color: 'white'}}>{player.player_name}</p>
+        <p style={{maxWidth: '200px'}}>{player.player_name}</p>
       </div>
     </div>
   )

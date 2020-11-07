@@ -46,7 +46,7 @@ function CreateTeam(){
   }
 
   function submitTeam(){
-    console.log(teamName);
+    console.log(teamName, teamPlayers, module);
     // const data = {
     //   teamName : teamName,
     //   // teamPlayers: teamPlayers
@@ -54,9 +54,6 @@ function CreateTeam(){
     // postData(data)
   }
 
-  useEffect(() => {
-    console.log(teamPlayers)
-  }, [teamPlayers])
   return (
     <div className={classes.root}>
       <div className={classes.valsContainer}>
@@ -108,8 +105,10 @@ function CreateTeam(){
               Search for a Player
             </Button>      
           </Paper> 
-          : 
-          <Player player={teamPlayers[i]}/> 
+          :
+          <Paper className={classes.paper}>
+            <Player player={teamPlayers[i]}/> 
+          </Paper>
           }
           {
           open &&
