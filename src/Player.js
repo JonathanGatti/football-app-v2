@@ -1,18 +1,12 @@
-import React, {useContext} from 'react';
-import { FormContext } from './contexts/FormContext';
-
-import SearchPlayerForm from './SearchPlayerForm';
-import Button from '@material-ui/core/Button';
+import React from 'react';
 
 
 function Player(props) {
   const {player} = props
-
   return (
     <div>
-
       <div>
-        <p>{player.player_name}</p>
+        <p style={{color: 'white'}}>{player.player_name}</p>
       </div>
     </div>
   )

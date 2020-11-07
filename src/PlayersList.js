@@ -1,7 +1,4 @@
-import React, { useContext } from 'react';
-
-import { CreateTeamContext } from './contexts/CreateTeamContexts';
-import { FormContext } from './contexts/FormContext';
+import React from 'react';
 
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import PersonIcon from '@material-ui/icons/Person';
@@ -10,10 +7,19 @@ import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 
 function PlayersList(props){
-  const {players, teamPlayers, setTeamPlayers, open, closeForm} = props
+  const {players, teamPlayers, setTeamPlayers, closeForm, idx} = props
+
+  const updateTeam = (newPlayer, idx) => {
+    const updatedTeam = teamPlayers.map((player, i) => {
+      console.log(idx, i)
+      return idx === i ? {...newPlayer} : player
+    })
+      setTeamPlayers(updatedTeam);
+      console.log(updatedTeam)
+  }
 
   function handleClick(player, i){
-      setTeamPlayers([...teamPlayers, player])
+      updateTeam(player, i)
     closeForm();
   }
   
@@ -21,11 +27,10 @@ function PlayersList(props){
     <div>
       <List>
         {players.map((player) => (
-          <>
+          <React.Fragment key={player.player_id}>
             <ListItem 
-              key={player.player_id}
               button
-              onClick={() => handleClick(player, props.idx)}
+              onClick={() => handleClick(player, idx)}
             >
               <ListItemIcon>
                 <PersonIcon />
@@ -33,8 +38,9 @@ function PlayersList(props){
               {player.player_name}
             </ListItem>
             <Divider />
-          </>
-        ))}
+          </React.Fragment>
+        ))
+        }
       </List>
     </div>
   )

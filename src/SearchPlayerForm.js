@@ -1,6 +1,5 @@
-import React, {useContext, useState} from 'react';
+import React, { useState} from 'react';
 import useSearchPlayerForm from './hooks/useSearchPlayerForm';
-import {FormContext} from './contexts/FormContext';
 
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
