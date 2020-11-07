@@ -9,9 +9,9 @@ import { Typography } from '@material-ui/core';
 
 function Team(props){
   const classes = useStyles();
-  const {teamPlayers, teamModule,teamName} = props;
+  const {team} = props;
+  const {teamPlayers, teamModule,teamName} = team;
 
-  console.log(teamModule)
  
   return(
       <Paper className={classes.root}>
