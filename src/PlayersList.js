@@ -10,13 +10,11 @@ import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 
 function PlayersList(props){
-  const {players} = props
-  const {teamPlayers, updateTeam} = useContext(CreateTeamContext)
-  const {toggleForm} = useContext(FormContext)
+  const {players, teamPlayers, setTeamPlayers, open, closeForm} = props
 
   function handleClick(player, i){
-      updateTeam(player, i);
-    toggleForm();
+      setTeamPlayers([...teamPlayers, player])
+    closeForm();
   }
   
   return (

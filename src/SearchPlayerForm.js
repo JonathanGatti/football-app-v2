@@ -12,9 +12,9 @@ import PlayersList from './PlayersList';
 import {getData} from './utils/fetchData';
 
 function SearchPlayerForm(props) {
-  const {open, closeForm} = props
+  const {open, closeForm, teamPlayers, setTeamPlayers} = props
   const [val, handleChange, reset] = useSearchPlayerForm('');
-  const [players, setPlayers] = useState()
+  const [players, setPlayers] = useState();
   
   const handleSubmit = async () =>{
     const team = await getData(val)
@@ -38,7 +38,14 @@ function SearchPlayerForm(props) {
                 onChange={handleChange}
               />
             </form>
-            {players && <PlayersList players={players} idx={props.idx}/>}
+            {players && <PlayersList 
+                            players={players} 
+                            idx={props.idx}
+                            teamPlayers={teamPlayers}
+                            setTeamPlayers={setTeamPlayers}
+                            open={open}
+                            closeForm={closeForm}
+                            />}
           </DialogContent>
           <DialogActions>
             <Button onClick={closeForm} color="primary">

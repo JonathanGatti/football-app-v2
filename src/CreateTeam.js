@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import Paper from '@material-ui/core/Paper';
 import useSearchPlayerForm from './hooks/useSearchPlayerForm';
 import {postData} from './utils/requestsLocalApi';
@@ -25,9 +25,9 @@ function CreateTeam(){
   const classes = useStyles();
   const [module, setModule] = useState(classic);
   const [isOpen, openSnackBar, closeSnackBar] = useSnackBar(false);
-  const [players, setPlayers] = useState([]);
   const [open, setIsOpen] = useState(false);
   const [teamName, setTeamName] = useState('');
+  const [teamPlayers, setTeamPlayers] = useState([]);
 
   const handleSelectChange = (e) =>{
     setModule(e.target.value)
@@ -54,6 +54,9 @@ function CreateTeam(){
     // postData(data)
   }
 
+  useEffect(() => {
+    console.log(teamPlayers)
+  }, [teamPlayers])
   return (
     <div className={classes.root}>
       <div className={classes.valsContainer}>
@@ -101,7 +104,13 @@ function CreateTeam(){
               Search for a Player
             </Button>      
           </Paper> : 
-          <SearchPlayerForm open={open} closeForm={closeForm}/>
+          
+          <SearchPlayerForm 
+            open={open} 
+            closeForm={closeForm}
+            teamPlayers={teamPlayers}
+            setTeamPlayers={setTeamPlayers}
+            />
           }
         </Grid>
         ))}
