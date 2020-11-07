@@ -7,7 +7,6 @@ import config from './config';
 
 function PlayerCard(props){
   const {player} = props;
-  const url = `https://api-football-v1.p.rapidapi.com/v2/players/player/${player.player_id}`
   
   useEffect(() => {
     async function getData(url){
