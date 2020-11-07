@@ -21,18 +21,21 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    height: '100%',
+    height: '100vh',
     width: '100%',
     display: 'flex',
-    alignItems: 'center',
     justifyContent: 'center',
   },
   playerContainer : {
-    maxHeight: '200px',
-    maxWidth: 'auto',
-    marginTop: '1rem',
     display : 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    maxHeight: '200px',
+    maxWidth: '200px',
+    marginTop: '1rem',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    color: 'white',
+    backgroundColor: 'transparent',
   },
 }));
 

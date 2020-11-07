@@ -47,11 +47,12 @@ function CreateTeam(){
 
   function submitTeam(){
     console.log(teamName, teamPlayers, module);
-    // const data = {
-    //   teamName : teamName,
-    //   // teamPlayers: teamPlayers
-    // }
-    // postData(data)
+    const data = {
+      teamName : teamName,
+      teamPlayers: teamPlayers,
+      teamModule: module
+    }
+    postData(data)
   }
 
   return (

@@ -12,7 +12,6 @@ import {useStyles} from './styles/HomePageStyles';
 function HomePage(props){
   const classes = useStyles();
   const {teams} = props;
-  console.log(teams)
 
   return (
     <Grid container className={classes.root} >

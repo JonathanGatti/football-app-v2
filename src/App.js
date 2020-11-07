@@ -29,9 +29,9 @@ function App() {
       team._id === id
     ))
       if(currTeam === undefined){
-        return <Team {...props} teamPlayers={[1,2,3,4,5,6]} teamName={''}/>
+        return <Team {...props} teamPlayers={[1,2,3,4,5,6]} teamName={''} teamModule={[1,2,3,4,5,6]}/>
       }
-    return <Team {...props} teamPlayers={currTeam.teamPlayers} teamName={currTeam.teamName}/>
+    return <Team {...props} teamPlayers={currTeam.teamPlayers} teamName={currTeam.teamName} teamModule={currTeam.teamModule}/>
   }
   return (
       <CreateTeamContextProvider>
